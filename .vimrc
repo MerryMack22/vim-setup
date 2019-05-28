@@ -40,6 +40,8 @@ Plugin 'tpope/vim-fugitive'
 " -------------------
 Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
 "
+Plugin 'vim-syntastic/syntastic' " <- should do marks for syntax issues
+"
 " === extras ===
 Plugin 'vim-scripts/HTML-AutoCloseTag'
 
@@ -71,6 +73,8 @@ autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': '<2-LeftMouse>', 'scope': "Fi
     endfunction
 " This allows hidden files to show up
 let NERDTreeShowHidden=1
+" This show cause nerdtree to reload on focus and when a file is written/edited
+autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " This handles file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -107,13 +111,22 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 set laststatus=2
 " === end vim-airline ====
 "
-" === scroolose/syntastic settings ===
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
-	au!
-	au FileType tex let b:syntastic_mode = "passive"
-augroup END
+" === vim-syntastic/syntastic settings ===
+"let g:syntastic_error_symbol = '✘'
+"let g:syntastic_warning_symbol = "▲"
+"augroup mySyntastic
+"	au!
+"	au FileType tex let b:syntastic_mode = "passive"
+"augroup END
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let b:syntastic_mode = "active"
 " === end syntastic =====
 "
 " === xolox/vim-easytags settings ===
@@ -171,7 +184,7 @@ set hlsearch
 syntax on
 set mouse=a
 
-colorscheme solarized
+"colorscheme solarized
+let g:molokai_original = 1
+let g:rehash256 = 1
 filetype plugin indent on
-
-
