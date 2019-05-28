@@ -144,7 +144,7 @@ let g:easytags_suppress_ctags_warning = 1
 " Open/close tagbar with \b
 nmap <silent> <leader>b :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possible
-autocmd BufEnter * nested :call tagbar#autoopen(0)
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
 " === end tagbar ===
 "
 " === airblade/vim-gitgutter settings ===
@@ -189,4 +189,7 @@ colorscheme solarized
 let g:rehash256 = 1
 filetype plugin indent on
 
-
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
