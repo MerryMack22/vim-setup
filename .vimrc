@@ -184,7 +184,9 @@ set hlsearch
 syntax on
 set mouse=a
 
-"colorscheme solarized
-let g:molokai_original = 1
+colorscheme solarized
+"let g:molokai_original = 1
 let g:rehash256 = 1
 filetype plugin indent on
+
+
