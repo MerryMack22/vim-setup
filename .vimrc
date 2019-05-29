@@ -10,19 +10,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'scrooloose/nerdtree' " <- Plugins for project navigation
 Plugin 'jistr/vim-nerdtree-tabs' " <- ^^^
-
 Plugin 'altercation/vim-colors-solarized' " <- Themes
 Plugin 'tomasr/molokai' " <- themes
 Plugin 'bling/vim-airline' " <- statusbar at bottom
@@ -35,9 +24,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 " -------------------
 Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
-"
 Plugin 'vim-syntastic/syntastic' " <- should do marks for syntax issues
 "
+" ---- autocompletion ----
+Plugin 'ervandew/supertab'
+" ------------------------
 " === extras ===
 Plugin 'vim-scripts/HTML-AutoCloseTag'
 Plugin 'xolox/vim-misc'
@@ -180,6 +171,11 @@ augroup mydelimitMate
 	au FileType python,php let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
 "
+"===============================
+"
+" === autocompletion ===
+"
+" === end autocompletion ===
 "
 " native VIM configs =======
 " shortcut tab navigation of ctrl+t+direction
@@ -199,7 +195,7 @@ set hlsearch
 
 syntax on
 set mouse=a
-
+set background=dark
 colorscheme solarized
 "let g:molokai_original = 1
 let g:rehash256 = 1
