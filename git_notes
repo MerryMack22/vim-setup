@@ -7,6 +7,7 @@ These are my notes/directions on how to use git in my VIM setup.
 2. Diff on current file
 3. Committing changes
 4. Pushing, pulling, and fetching
+5. Misc.
 
 
 --------------------------
@@ -72,7 +73,6 @@ These are my notes/directions on how to use git in my VIM setup.
   requested git to stage.
 
 
-
 --------------------------
 3. Committing changes
   Before committing your changes I HIGHLY recommend going to the command
@@ -85,6 +85,7 @@ These are my notes/directions on how to use git in my VIM setup.
   a new window with the default commit message. Type your desired commit
   message and run ':wq' to save your commit.
 
+
 --------------------------
 4. Pushing, pulling, and fetching
   To push your commits, use the command
@@ -95,3 +96,15 @@ These are my notes/directions on how to use git in my VIM setup.
 
   To fetch, use the command
     :Gfetch
+
+
+--------------------------
+5. Misc.
+  You can do all sorts of things you'd normally do on the command line from
+  inside vim such as:
+  Stashing
+    :Git stash
+    :Git stash pop
+  Switching branches
+    :Git checkout [branch name]
+
