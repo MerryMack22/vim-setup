@@ -20,21 +20,17 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Plugin for project navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdtree' " <- Plugins for project navigation
+Plugin 'jistr/vim-nerdtree-tabs' " <- ^^^
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'bling/vim-airline'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized' " <- Themes
+Plugin 'tomasr/molokai' " <- themes
+Plugin 'bling/vim-airline' " <- statusbar at bottom
+Plugin 'xolox/vim-easytags' " <- tag generation and (some) syntax highlighting
+Plugin 'majutsushi/tagbar' " <- tag pane at right of window
+Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
 " --- git plugins----
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 " -------------------
@@ -44,6 +40,8 @@ Plugin 'vim-syntastic/syntastic' " <- should do marks for syntax issues
 "
 " === extras ===
 Plugin 'vim-scripts/HTML-AutoCloseTag'
+Plugin 'xolox/vim-misc'
+Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
 
 
 " All of your Plugins must be added before the following line
@@ -63,7 +61,7 @@ filetype plugin indent on    " required
 "
 " NERDTree ================== 
 " This creates a keyboard shortcut for NERDTree (Ctrl+n)
-map <C-n> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 " this opens each file in a new tab when pressing enter
 let NERDTreeMapOpenInTab='<ENTER>'
 " this should let me double click to open in new tab
@@ -105,6 +103,20 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 "
 " end NERDTree tabs ======
 "
+" === Xuyuanp/nerdtree-git-plugin settings ===
+let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
+" === end Xuyuanp/nerdtree-git-plugin ===
 "
 " === bling/vim-airline settings===
 " always show statusbar
