@@ -1,0 +1,97 @@
+==========================
+These are my notes/directions on how to use git in my VIM setup.
+==========================
+
+
+1. Status of project
+2. Diff on current file
+3. Committing changes
+4. Pushing, pulling, and fetching
+
+
+--------------------------
+1. Status of project
+  
+  :Gstatus
+
+  This command opens a window at the top of the page showing all
+  files that have changes compared to the git index, what branch
+  you are on, what your HEAD is set to, and any commits that have
+  not yet been pushed.
+  
+  You can add or remove files from the staged area by pressing (-)
+  while your cursor is on the file you want to add or remove. This
+  also applies to visual mode so if you select multiple files and
+  press (-) then they will all be added or removed.
+
+
+--------------------------
+2. Diff on current file
+
+  :Gdiff
+
+  This command splits the current file vertically into two panes
+  showing the index version and the current version of the file.
+      ============================================
+      | Index Version   | Current Working Version |
+      |                 |                         |
+      |                 |                         |
+      ============================================
+  You will probably be familliar with the format of removed lines
+  showing as red and added lines in green. The part that might
+  be confusing is that you cannot put your cursor on the red lines
+  (that would be like placing your cursor on nothing).
+
+  In this window, you can update the index from the current working
+  version (staging lines) or update the current working version
+  from the index (resetting lines).
+
+  To stage or remove chunks that are highlighted by this diff, place
+  your cursor on the green section of the chunk you want to deal
+  with. If you want to push this hunk into the other file (i.e. push
+  added lines into the index or re-add lines from the index into the
+  working copy) then use the command
+    :diffput
+  If you want to do this in reverse (i.e. overwrite lines with what's
+  in the other file) then use the command
+    :diffget
+    ^^^ this is particularly usefull when staging removal of lines.
+    
+  To stage one added or changed line from the current working version
+  into the index, place your cursor on the desired line in Normal
+  mode and press (S).
+  
+  To stage multiple added or changed lines from the current working
+  version into the index, select the desired lines (which will put
+  you into visual mode) then use the command
+    :'<,'>diffget
+
+  !!!!! IMPORTANT !!!!!
+  After performing any of these commands you must update the index
+  with ':w'. This will update the index and stage the lines you've
+  requested git to stage.
+
+
+
+--------------------------
+3. Committing changes
+  Before committing your changes I HIGHLY recommend going to the command
+  line and running
+    git diff --cached
+  this will show you exactly what you have staged to commit and is very
+  helpful when you have staged only certain lines from a file.
+
+  With the status window open, in Normal mode press (cc). This will open
+  a new window with the default commit message. Type your desired commit
+  message and run ':wq' to save your commit.
+
+--------------------------
+4. Pushing, pulling, and fetching
+  To push your commits, use the command
+    :Gpush
+
+  To pull commits, use the command
+    :Gpull
+
+  To fetch, use the command
+    :Gfetch
