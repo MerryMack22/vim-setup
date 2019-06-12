@@ -12,8 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree' " <- Plugins for project navigation
 Plugin 'jistr/vim-nerdtree-tabs' " <- ^^^
-Plugin 'altercation/vim-colors-solarized' " <- Themes
-Plugin 'tomasr/molokai' " <- themes
+Plugin 'flazz/vim-colorschemes' " <- Themes
 Plugin 'bling/vim-airline' " <- statusbar at bottom
 Plugin 'xolox/vim-easytags' " <- tag generation and (some) syntax highlighting
 Plugin 'majutsushi/tagbar' " <- tag pane at right of window
@@ -196,7 +195,7 @@ set hlsearch
 syntax on
 set mouse=a
 set background=dark
-colorscheme solarized
+colorscheme materialbox "badwolf
 "let g:molokai_original = 1
 let g:rehash256 = 1
 filetype plugin indent on
@@ -205,3 +204,5 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+" this allows y & p between multiple vim windows
+set clipboard=unnamedplus
