@@ -244,15 +244,15 @@ function! Class()
     let namespace = input('Any Namespace? ')
 
     if strlen(namespace)
-        exec 'normal i<?php namespace ' . namespace . ';
-    else
-        exec 'normal i<?php
+        exec "normal i<?php namespace " . namespace . ";\<C-m>\<C-m>"
+      else
+        exec "normal i<?php \<C-m>"
     endif
 
     " Open class
-    exec 'normal iclass ' . name . ' {^M}^[O^['
+    exec "normal iclass " . name . " {\<C-m>}\<C-[>O\<C-[>"
 
-    exec 'normal i^M    public function __construct()^M{^M ^M}^['
+    exec "normal i\<C-M>public function __construct()\<C-M>{\<C-M>\<C-M>}\<C-[>"
 endfunction
 nmap <leader>1  :call Class()<cr>
 
