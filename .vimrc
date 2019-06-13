@@ -185,7 +185,7 @@ map <C-t><right> :tabn<cr>
 
 
 " ======= General Settings ======
-set backspace=indent,eol,start
+set backspace=indent,eol,start "allow backspacing over anything in insert mode
 set ruler
 set number
 set showcmd
@@ -204,5 +204,72 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-" this allows y & p between multiple vim windows
-set clipboard=unnamedplus
+set clipboard=unnamedplus " this allows y & p between multiple vim windows
+set autoindent " always set autoindenting on
+set autowrite " save on buffer switch
+set smartcase "ignore case if search pattern is all lowercase
+
+
+" ======== Laravel Specific Configs =============
+" Abbreviations
+abbrev pft PHPUnit_Framework_TestCase
+
+abbrev gm !php artisan generate:model
+abbrev gc !php artisan generate:controller
+abbrev gmig !php artisan generate:migration
+
+" Laravel framework commons
+nmap <leader>lr :e app/routes.php<cr>
+nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
+nmap <leader>lcd :e app/config/database.php<cr>
+nmap <leader>lc :e composer.json<cr>
+
+" Concept - load underlying class for Laravel
+function! FacadeLookup()
+    let facade = input('Facade Name: ')
+    let classes = {
+\       'Form': 'Html/FormBuilder.php',
+\       'Html': 'Html/HtmlBuilder.php',
+\       'File': 'Filesystem/Filesystem.php',
+\       'Eloquent': 'Database/Eloquent/Model.php'
+\   }
+
+    execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
+endfunction
+nmap <leader>lf :call FacadeLookup()<cr>
+
+" Prepare a new PHP class
+function! Class()
+    let name = input('Class name? ')
+    let namespace = input('Any Namespace? ')
+
+    if strlen(namespace)
+        exec 'normal i<?php namespace ' . namespace . ';
+    else
+        exec 'normal i<?php
+    endif
+
+    " Open class
+    exec 'normal iclass ' . name . ' {^M}^[O^['
+
+    exec 'normal i^M    public function __construct()^M{^M ^M}^['
+endfunction
+nmap <leader>1  :call Class()<cr>
+
+" Add a new dependency to a PHP class
+function! AddDependency()
+    let dependency = input('Var Name: ')
+    let namespace = input('Class Path: ')
+
+    let segments = split(namespace, '\')
+    let typehint = segments[-1]
+
+    exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
+
+    " Remove opening comma if there is only one dependency
+    exec 'normal :%s/(, /(/g'
+endfunction
+nmap <leader>2 :call AddDependency()<cr>
+
+" ========= end laravel specific configs =========
+
