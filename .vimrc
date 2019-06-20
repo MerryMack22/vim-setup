@@ -32,6 +32,7 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/HTML-AutoCloseTag'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
+"Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
 
 
 " All of your Plugins must be added before the following line
