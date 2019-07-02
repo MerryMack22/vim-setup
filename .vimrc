@@ -24,6 +24,7 @@ Plugin 'tpope/vim-fugitive'
 " -------------------
 Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
 Plugin 'vim-syntastic/syntastic' " <- should do marks for syntax issues
+Plugin 'leafgarland/typescript-vim' " <- typescript syntax
 "
 " ---- autocompletion ----
 Plugin 'ervandew/supertab'
