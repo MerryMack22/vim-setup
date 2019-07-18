@@ -13,7 +13,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree' " <- Plugins for project navigation
 Plugin 'jistr/vim-nerdtree-tabs' " <- ^^^
 Plugin 'flazz/vim-colorschemes' " <- Themes
-Plugin 'bling/vim-airline' " <- statusbar at bottom
+Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
+Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
 Plugin 'xolox/vim-easytags' " <- tag generation and (some) syntax highlighting
 Plugin 'majutsushi/tagbar' " <- tag pane at right of window
 Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
@@ -33,7 +34,8 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/HTML-AutoCloseTag'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
-"Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
+Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
+Plugin 'chrisbra/csv.vim' " <- csv extras
 
 
 " All of your Plugins must be added before the following line
@@ -58,17 +60,17 @@ map <C-t> :NERDTreeToggle<CR>
 let NERDTreeMapOpenInTab='<ENTER>'
 " this should let me double click to open in new tab
 autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': '<2-LeftMouse>', 'scope': "FileNode", 'callback': "OpenInTab", 'override':1 })
-    function! OpenInTab(node)
-        call a:node.activate({'reuse': 'all', 'where': 't'})
-    endfunction
+function! OpenInTab(node)
+  call a:node.activate({'reuse': 'all', 'where': 't'})
+endfunction
 " This allows hidden files to show up
 let NERDTreeShowHidden=1
 " This show cause nerdtree to reload on focus and when a file is written/edited
 autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " This handles file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -113,6 +115,8 @@ let g:NERDTreeIndicatorMapCustom = {
 " === bling/vim-airline settings===
 " always show statusbar
 set laststatus=2
+"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " === end vim-airline ====
 "
 " === vim-syntastic/syntastic settings ===
@@ -165,11 +169,11 @@ map <C-b> :Gblame<CR>
 " === raimondi/delemitmate settings ===
 let delimitMate_expand_cr = 1
 augroup mydelimitMate
-	au!
-	au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-	au FileType tex let b:delimitMate_quotes = ""
-	au FileType text let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-	au FileType python,php let b:delimitMate_nesting_quotes = ['"', "'"]
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType text let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python,php let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
 "
 "===============================
@@ -211,6 +215,9 @@ set autoindent " always set autoindenting on
 set autowrite " save on buffer switch
 set smartcase "ignore case if search pattern is all lowercase
 
+" places '*' for trailing whitespace
+set list
+set listchars=trail:*
 
 " ======== Laravel Specific Configs =============
 " Abbreviations
@@ -228,48 +235,48 @@ nmap <leader>lc :e composer.json<cr>
 
 " Concept - load underlying class for Laravel
 function! FacadeLookup()
-    let facade = input('Facade Name: ')
-    let classes = {
-\       'Form': 'Html/FormBuilder.php',
-\       'Html': 'Html/HtmlBuilder.php',
-\       'File': 'Filesystem/Filesystem.php',
-\       'Eloquent': 'Database/Eloquent/Model.php'
-\   }
+  let facade = input('Facade Name: ')
+  let classes = {
+        \       'Form': 'Html/FormBuilder.php',
+        \       'Html': 'Html/HtmlBuilder.php',
+        \       'File': 'Filesystem/Filesystem.php',
+        \       'Eloquent': 'Database/Eloquent/Model.php'
+        \   }
 
-    execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
+  execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
 endfunction
 nmap <leader>lf :call FacadeLookup()<cr>
 
 " Prepare a new PHP class
 function! Class()
-    let name = input('Class name? ')
-    let namespace = input('Any Namespace? ')
+  let name = input('Class name? ')
+  let namespace = input('Any Namespace? ')
 
-    if strlen(namespace)
-        exec "normal i<?php namespace " . namespace . ";\<C-m>\<C-m>"
-      else
-        exec "normal i<?php \<C-m>"
-    endif
+  if strlen(namespace)
+    exec "normal i<?php namespace " . namespace . ";\<C-m>\<C-m>"
+  else
+    exec "normal i<?php \<C-m>"
+  endif
 
-    " Open class
-    exec "normal iclass " . name . " {\<C-m>}\<C-[>O\<C-[>"
+  " Open class
+  exec "normal iclass " . name . " {\<C-m>}\<C-[>O\<C-[>"
 
-    exec "normal i\<C-M>public function __construct()\<C-M>{\<C-M>\<C-M>}\<C-[>"
+  exec "normal i\<C-M>public function __construct()\<C-M>{\<C-M>\<C-M>}\<C-[>"
 endfunction
 nmap <leader>1  :call Class()<cr>
 
 " Add a new dependency to a PHP class
 function! AddDependency()
-    let dependency = input('Var Name: ')
-    let namespace = input('Class Path: ')
+  let dependency = input('Var Name: ')
+  let namespace = input('Class Path: ')
 
-    let segments = split(namespace, '\')
-    let typehint = segments[-1]
+  let segments = split(namespace, '\')
+  let typehint = segments[-1]
 
-    exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
+  exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
 
-    " Remove opening comma if there is only one dependency
-    exec 'normal :%s/(, /(/g'
+  " Remove opening comma if there is only one dependency
+  exec 'normal :%s/(, /(/g'
 endfunction
 nmap <leader>2 :call AddDependency()<cr>
 
