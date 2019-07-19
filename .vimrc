@@ -217,7 +217,7 @@ set smartcase "ignore case if search pattern is all lowercase
 
 " places '*' for trailing whitespace
 set list
-set listchars=trail:*
+set listchars=trail:¬
 
 " ======== Laravel Specific Configs =============
 " Abbreviations
