@@ -215,9 +215,8 @@ set autoindent " always set autoindenting on
 set autowrite " save on buffer switch
 set smartcase "ignore case if search pattern is all lowercase
 
-" places '*' for trailing whitespace
 set list
-set listchars=trail:¬
+set listchars=tab:▸\ ,trail:¬
 
 " ======== Laravel Specific Configs =============
 " Abbreviations
