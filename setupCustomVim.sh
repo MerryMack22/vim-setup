@@ -1,8 +1,57 @@
 #!/bin/bash
 
+RED='\033[0;31m]'
+YELLOW='\033[1;33m'
+NC='\033[0m' # no color
+
+function installZypper {
+  echo -e "${YELLOW}Installing dependencies (zypper)${NC}"
+  sudo zypper install -y git wget
+}
+
+function installYum {
+  echo -e "${YELLOW}Installing dependencies (yum)${NC}"
+  sudo yum install -y git wget
+}
+
+function installApt {
+  echo -e "${YELLOW}Installing dependencies (apt)${NC}"
+  sudo apt install -y git wget
+}
+
+function installDependencies {
+  if [ -n "$(command -v yum)" ]; then
+    installYum
+    return 1
+  elif [ -n "$(command -v zypper)" ]; then
+    installZypper
+    return 1
+  elif [ -n "$(command -v apt)" ]; then
+    installApt
+    return 1
+  else
+    echo -e "${RED}Please ensure both Git and wget are installed.${NC}"
+  fi
+  exit 1
+}
+
+
 #verify dependencies are installed
-command -v git >/dev/null 2>&1 || { echo >&2 "Git is required to install Vundle.  Aborting."; exit 1; }
-command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is required to download custom vimrc.  Aborting."; exit 1; }
+GIT_INSTALLED=true
+WGET_INSTALLED=true
+
+if [ -z "$(command -v git)" ]; then
+  GIT_INSTALLED=false
+fi
+
+if [ -z "$(command -v wget)" ]; then
+  WGET_INSTALLED=false
+fi
+
+if [ !$GIT_INSTALLED ] || [ !$WGET_INSTALLED ]; then
+  installDependencies
+fi
+
 
 cd ~
 
