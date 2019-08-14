@@ -218,6 +218,10 @@ set smartcase "ignore case if search pattern is all lowercase
 set list
 set listchars=tab:▸\ ,trail:¬
 
+"hi Normal guibg=NONE ctermbg=NONE
+"^^^ this sets the background transparent (shows terminal background color or
+"if terminal is transparent, then is also transparent)
+
 " ======== Laravel Specific Configs =============
 " Abbreviations
 abbrev pft PHPUnit_Framework_TestCase
