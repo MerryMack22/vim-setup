@@ -9,51 +9,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'scrooloose/nerdtree' " <- Plugins for project navigation
-Plugin 'jistr/vim-nerdtree-tabs' " <- ^^^
-Plugin 'flazz/vim-colorschemes' " <- Themes
-Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
-Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
-Plugin 'xolox/vim-easytags' " <- tag generation and (some) syntax highlighting
-Plugin 'majutsushi/tagbar' " <- tag pane at right of window
-Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
-" --- git plugins----
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-" -------------------
-Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
-Plugin 'vim-syntastic/syntastic' " <- should do marks for syntax issues
-Plugin 'leafgarland/typescript-vim' " <- typescript syntax
 "
-" ---- autocompletion ----
-Plugin 'ervandew/supertab'
-" ------------------------
-" === extras ===
-Plugin 'vim-scripts/HTML-AutoCloseTag'
-Plugin 'xolox/vim-misc'
-Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
-Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
-Plugin 'chrisbra/csv.vim' " <- csv extras
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-" NERDTree ================== 
+" NERDTree ==================
+Plugin 'scrooloose/nerdtree'
 " This creates a keyboard shortcut for NERDTree (Ctrl+n)
 map <C-t> :NERDTreeToggle<CR>
 " this opens each file in a new tab when pressing enter
@@ -90,6 +48,7 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " end NERDTree =============
 "
 " ==== NERDTree tabs =====
+Plugin 'jistr/vim-nerdtree-tabs'
 " Open/close NERDTree Tabs with \t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
@@ -98,6 +57,7 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 " end NERDTree tabs ======
 "
 " === Xuyuanp/nerdtree-git-plugin settings ===
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeIndicatorMapCustom = {
       \ "Modified"  : "✹",
       \ "Staged"    : "✚",
@@ -113,42 +73,49 @@ let g:NERDTreeIndicatorMapCustom = {
 " === end Xuyuanp/nerdtree-git-plugin ===
 "
 " === bling/vim-airline settings===
+Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
+Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
 " always show statusbar
 set laststatus=2
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " === end vim-airline ====
 "
-" === vim-syntastic/syntastic settings ===
-"let g:syntastic_error_symbol = '✘'
-"let g:syntastic_warning_symbol = "▲"
-"augroup mySyntastic
-"	au!
-"	au FileType tex let b:syntastic_mode = "passive"
-"augroup END
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let b:syntastic_mode = "active"
-" === end syntastic =====
+" === dense-analysis/ale ===
+" enable completion when available
+let g:ale_completion_enabled = 1 " <- must be loaded before ALE???
+Plugin 'dense-analysis/ale' " <- async syntax
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" formatting for echo'd error messages
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" enable hover ballons for errors
+let g:ale_set_balloons=1
+" === end dense-analysis/ale ===
 "
-" === xolox/vim-easytags settings ===
-" where to look for tags files
-set tags=./tags;,~/.vimtags
-" sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-" === end vim-easytags ===
+" === ludovicchabant/vim-gutentags ===
+Plugin 'ludovicchabant/vim-gutentags' " <- more effecient tag generation?
+" show when tags are being generated in statusline
+"set statusline+=%{gutentags#statusline()}
+function! s:get_gutentags_status(mods) abort
+  let l:msg = ''
+  if index(a:mods, 'ctags') >= 0
+    let l:msg .= '♨'
+  endif
+  if index(a:mods, 'cscope') >= 0
+    let l:msg .= '♺'
+  endif
+  return l:msg
+endfunction
+
+:set statusline+=%{gutentags#statusline_cb(
+      \function('<SID>get_gutentags_status'))}
+" === end ludovicchabant/vim-gutentags ===
 "
 " === mujutsushi/tagbar settings ===
+Plugin 'majutsushi/tagbar' " <- tag pane at right of window
 " Open/close tagbar with \b
 nmap <silent> <leader>b :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possible
@@ -156,6 +123,7 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 " === end tagbar ===
 "
 " === airblade/vim-gitgutter settings ===
+Plugin 'airblade/vim-gitgutter'
 " Required after changing the colorscheme
 hi clear SignColumn
 " In vim-airline, only display 'hunks' if the diff is non-zero
@@ -163,10 +131,12 @@ let g:airline#extensions#hunks#non_zero_only = 1
 " === end vim-gitgutter ===
 "
 " === tpope/vim-fugitive settings ===
+Plugin 'tpope/vim-fugitive'
 map <C-b> :Gblame<CR>
 " === end tpope/vim-fugitive ===
 "
 " === raimondi/delemitmate settings ===
+Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
 let delimitMate_expand_cr = 1
 augroup mydelimitMate
   au!
@@ -178,9 +148,50 @@ augroup END
 "
 "===============================
 "
-" === autocompletion ===
+" === tpope/vim-surround ===
+Plugin 'tpope/vim-surround'
+" not any config to be done here, just some notes
+" in normal mode:
+" ds<character> <- delete surroundings
+"   "Hello world" -> ds" -> Hello world
 "
-" === end autocompletion ===
+" cs<find><replace> <- replace surrounding
+"   [123+456] -> cs]) -> (123+456)
+"   "Look, I'm HTML!" -> cs"<q> -> <q>Look, I'm HTML!</q>
+"
+" in visual mode:
+" S<something> <- create surrounding what has been selected
+"   Hello world -> S<p class="important"> -> <p class="important>
+"                                              Hello world
+"                                            </p>
+" === end tpope/vim-surround ===
+"
+" === extras ===
+Plugin 'flazz/vim-colorschemes' " <- Themes
+Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
+Plugin 'leafgarland/typescript-vim' " <- typescript syntax
+Plugin 'ervandew/supertab' " <- autocompletion
+Plugin 'vim-scripts/HTML-AutoCloseTag'
+Plugin 'xolox/vim-misc'
+Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
+Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
+Plugin 'chrisbra/csv.vim' " <- csv extras
+" === end extras ===
+"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 "
 " native VIM configs =======
 " shortcut tab navigation of ctrl+t+direction
@@ -218,7 +229,7 @@ set smartcase "ignore case if search pattern is all lowercase
 set list
 set listchars=tab:▸\ ,trail:¬
 
-"hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 "^^^ this sets the background transparent (shows terminal background color or
 "if terminal is transparent, then is also transparent)
 
@@ -284,4 +295,3 @@ endfunction
 nmap <leader>2 :call AddDependency()<cr>
 
 " ========= end laravel specific configs =========
-
