@@ -48,7 +48,7 @@ if [ -z "$(command -v wget)" ]; then
   WGET_INSTALLED=false
 fi
 
-if [ !$GIT_INSTALLED ] || [ !$WGET_INSTALLED ]; then
+if [ ! $GIT_INSTALLED ] || [ ! $WGET_INSTALLED ]; then
   installDependencies
 fi
 
