@@ -24,7 +24,7 @@ endfunction
 " This allows hidden files to show up
 let NERDTreeShowHidden=1
 " This show cause nerdtree to reload on focus and when a file is written/edited
-autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " This handles file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -52,7 +52,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " Open/close NERDTree Tabs with \t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 1
+"let g:nerdtree_tabs_open_on_console_startup = 1
 "
 " end NERDTree tabs ======
 "
@@ -166,9 +166,15 @@ Plugin 'tpope/vim-surround'
 "                                            </p>
 " === end tpope/vim-surround ===
 "
+" === ctrlpvim/ctrlp.vim ===
+Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
+let g:ctrlp_tabpage_position = 'ac'
+let g:ctrlp_show_hidden = 0 " <- scans for .files and .dirs
+" === end  ===
+"
 " === extras ===
 Plugin 'flazz/vim-colorschemes' " <- Themes
-Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
+
 Plugin 'leafgarland/typescript-vim' " <- typescript syntax
 Plugin 'ervandew/supertab' " <- autocompletion
 Plugin 'vim-scripts/HTML-AutoCloseTag'
@@ -215,7 +221,6 @@ set background=dark
 colorscheme materialbox "badwolf
 "let g:molokai_original = 1
 let g:rehash256 = 1
-filetype plugin indent on
 
 set tabstop=2
 set softtabstop=2
@@ -295,3 +300,4 @@ endfunction
 nmap <leader>2 :call AddDependency()<cr>
 
 " ========= end laravel specific configs =========
+
