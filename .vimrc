@@ -12,8 +12,8 @@ Plugin 'VundleVim/Vundle.vim'
 "
 " NERDTree ==================
 Plugin 'scrooloose/nerdtree'
-" This creates a keyboard shortcut for NERDTree (Ctrl+n)
-map <C-t> :NERDTreeToggle<CR>
+" This creates a keyboard shortcut for NERDTree (Ctrl+t)
+map <C-t> :NERDTreeToggle :NERDTreeRefreshRoot<CR>
 " this opens each file in a new tab when pressing enter
 let NERDTreeMapOpenInTab='<ENTER>'
 " this should let me double click to open in new tab
@@ -170,6 +170,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
 let g:ctrlp_tabpage_position = 'ac'
 let g:ctrlp_show_hidden = 0 " <- scans for .files and .dirs
+" Should allow pressing enter to open in new tab
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<C-e>'],
+    \ 'AcceptSelection("t")': ['<Cr>'],
+    \}
 " === end  ===
 "
 " === extras ===
