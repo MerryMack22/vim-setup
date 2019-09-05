@@ -13,7 +13,8 @@ Plugin 'VundleVim/Vundle.vim'
 " NERDTree ==================
 Plugin 'scrooloose/nerdtree'
 " This creates a keyboard shortcut for NERDTree (Ctrl+t)
-map <C-t> :NERDTreeToggle :NERDTreeRefreshRoot<CR>
+map <C-t> :NERDTreeToggle<CR>
+map <C-r> :NERDTreeRefreshRoot<CR>
 " this opens each file in a new tab when pressing enter
 let NERDTreeMapOpenInTab='<ENTER>'
 " this should let me double click to open in new tab
@@ -24,7 +25,7 @@ endfunction
 " This allows hidden files to show up
 let NERDTreeShowHidden=1
 " This show cause nerdtree to reload on focus and when a file is written/edited
-"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " This handles file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -169,7 +170,7 @@ Plugin 'tpope/vim-surround'
 " === ctrlpvim/ctrlp.vim ===
 Plugin 'ctrlpvim/ctrlp.vim' " <- full path fuzzy file,buffer,mru,tag,et c. finder
 let g:ctrlp_tabpage_position = 'ac'
-let g:ctrlp_show_hidden = 0 " <- scans for .files and .dirs
+let g:ctrlp_show_hidden = 1 " <- scans for .files and .dirs
 " Should allow pressing enter to open in new tab
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<C-e>'],
@@ -189,61 +190,8 @@ Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3
 Plugin 'chrisbra/csv.vim' " <- csv extras
 " === end extras ===
 "
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-" native VIM configs =======
-" shortcut tab navigation of ctrl+t+direction
-map <C-t><up> :tabr<cr>
-map <C-t><down> :tabl<cr>
-map <C-t><left> :tabp<cr>
-map <C-t><right> :tabn<cr>
-
-
-" ======= General Settings ======
-set backspace=indent,eol,start "allow backspacing over anything in insert mode
-set ruler
-set number
-set showcmd
-set incsearch
-set hlsearch
-
-syntax on
-set mouse=a
-set background=dark
-colorscheme materialbox "badwolf
-"let g:molokai_original = 1
-let g:rehash256 = 1
-
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set clipboard=unnamedplus " this allows y & p between multiple vim windows
-set autoindent " always set autoindenting on
-set autowrite " save on buffer switch
-set smartcase "ignore case if search pattern is all lowercase
-
-set list
-set listchars=tab:▸\ ,trail:¬
-
-hi Normal guibg=NONE ctermbg=NONE
-"^^^ this sets the background transparent (shows terminal background color or
-"if terminal is transparent, then is also transparent)
-
 " ======== Laravel Specific Configs =============
+"
 " Abbreviations
 abbrev pft PHPUnit_Framework_TestCase
 
@@ -305,4 +253,58 @@ endfunction
 nmap <leader>2 :call AddDependency()<cr>
 
 " ========= end laravel specific configs =========
+"
+"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+" native VIM configs =======
+" shortcut tab navigation of ctrl+t+direction
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
 
+
+" ======= General Settings ======
+set backspace=indent,eol,start "allow backspacing over anything in insert mode
+set ruler
+set number
+set showcmd
+set incsearch
+set hlsearch
+
+syntax on
+set mouse=a
+set background=dark
+colorscheme materialbox "badwolf
+"let g:molokai_original = 1
+let g:rehash256 = 1
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set clipboard=unnamedplus " this allows y & p between multiple vim windows
+set autoindent " always set autoindenting on
+set autowrite " save on buffer switch
+set smartcase "ignore case if search pattern is all lowercase
+
+set list
+set listchars=tab:▸\ ,trail:¬
+
+hi Normal guibg=NONE ctermbg=NONE
+"^^^ this sets the background transparent (shows terminal background color or
+"if terminal is transparent, then is also transparent)
