@@ -25,7 +25,8 @@ endfunction
 " This allows hidden files to show up
 let NERDTreeShowHidden=1
 " This show cause nerdtree to reload on focus and when a file is written/edited
-autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+autocmd BufWritePost | execute 'normal R' | wincmd p
 " This handles file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -195,9 +196,9 @@ Plugin 'chrisbra/csv.vim' " <- csv extras
 " Abbreviations
 abbrev pft PHPUnit_Framework_TestCase
 
-abbrev gm !php artisan generate:model
-abbrev gc !php artisan generate:controller
-abbrev gmig !php artisan generate:migration
+abbrev genm !php artisan generate:model
+abbrev genc !php artisan generate:controller
+abbrev genmig !php artisan generate:migration
 
 " Laravel framework commons
 nmap <leader>lr :e app/routes.php<cr>
