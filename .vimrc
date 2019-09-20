@@ -192,6 +192,8 @@ Plugin 'chrisbra/csv.vim' " <- csv extras
 " === end extras ===
 "
 " ======== Laravel Specific Configs =============
+Plugin 'jwalton512/vim-blade'
+"
 "
 " Abbreviations
 abbrev pft PHPUnit_Framework_TestCase
