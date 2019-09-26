@@ -179,9 +179,12 @@ let g:ctrlp_prompt_mappings = {
     \}
 " === end  ===
 "
+" === junegunn/limelight.vim ===
+Plugin 'junegunn/limelight.vim' " <- turns off highlighting outside of current scope
+let g:limelight_conceal_ctermfg = 'gray'
+"
 " === extras ===
 Plugin 'flazz/vim-colorschemes' " <- Themes
-
 Plugin 'leafgarland/typescript-vim' " <- typescript syntax
 Plugin 'ervandew/supertab' " <- autocompletion
 Plugin 'vim-scripts/HTML-AutoCloseTag'
@@ -193,8 +196,6 @@ Plugin 'chrisbra/csv.vim' " <- csv extras
 "
 " ======== Laravel Specific Configs =============
 Plugin 'jwalton512/vim-blade'
-Plugin 'posva/vim-vue' " <- to integrate with ALE:
-" npm i -g eslint eslint-plugin-vue
 "
 "
 " Abbreviations
@@ -285,9 +286,9 @@ map <C-t><right> :tabn<cr>
 
 " ======= General Settings ======
 set backspace=indent,eol,start "allow backspacing over anything in insert mode
-set ruler
+"set ruler
 set number
-set showcmd
+"set showcmd
 set incsearch
 set hlsearch
 
