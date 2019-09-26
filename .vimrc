@@ -196,6 +196,8 @@ Plugin 'chrisbra/csv.vim' " <- csv extras
 "
 " ======== Laravel Specific Configs =============
 Plugin 'jwalton512/vim-blade'
+Plugin 'posva/vim-vue' " <- to integrate with ALE:
+" npm i -g eslint eslint-plugin-vue
 "
 "
 " Abbreviations
