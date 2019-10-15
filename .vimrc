@@ -74,6 +74,11 @@ let g:NERDTreeIndicatorMapCustom = {
       \ }
 " === end Xuyuanp/nerdtree-git-plugin ===
 "
+" === MattesGroeger/vim-bookmarks settings ===
+Plugin 'MattesGroeger/vim-bookmarks'
+let g:bookmark_disable_ctrlp = 1
+" === end MattesGroeger/vim-bookmarks ===
+"
 " === bling/vim-airline settings===
 Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
 Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
