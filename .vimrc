@@ -135,6 +135,8 @@ Plugin 'airblade/vim-gitgutter'
 hi clear SignColumn
 " In vim-airline, only display 'hunks' if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
+" set max sidebar signs from default 500
+let g:gitgutter_max_signs = 1000
 " === end vim-gitgutter ===
 "
 " === tpope/vim-fugitive settings ===
