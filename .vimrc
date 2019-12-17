@@ -82,6 +82,7 @@ let g:bookmark_disable_ctrlp = 1
 " === bling/vim-airline settings===
 Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
 Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
+let g:airline_powerline_fonts = 1 " <- for patched powerline-fonts
 " always show statusbar
 set laststatus=2
 "let g:airline#extensions#tabline#enabled = 1
