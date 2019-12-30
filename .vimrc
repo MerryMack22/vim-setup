@@ -82,7 +82,6 @@ let g:bookmark_disable_ctrlp = 1
 " === bling/vim-airline settings===
 Plugin 'vim-airline/vim-airline' " <- statusbar at bottom
 Plugin 'vim-airline/vim-airline-themes' " <- themes for statusbar
-let g:airline_powerline_fonts = 1 " <- for patched powerline-fonts
 " always show statusbar
 set laststatus=2
 "let g:airline#extensions#tabline#enabled = 1
@@ -145,6 +144,14 @@ Plugin 'tpope/vim-fugitive'
 map <C-b> :Gblame<CR>
 " === end tpope/vim-fugitive ===
 "
+" === junegunn/gv.vim settings ===
+Plugin 'junegunn/gv.vim'
+" :GV  to open commit browser (accepts 'git log' params)
+" :GV! commits affecting current file
+" :GV? fills the location list with the revisions of the current file
+" :GV! and :GV? can be used in visual mode for selected lines
+" === end junegunn/gv.vim ===
+"
 " === raimondi/delemitmate settings ===
 Plugin 'Raimondi/delimitMate' " <- creates closing brackets/parentesis/et c.
 let delimitMate_expand_cr = 1
@@ -192,6 +199,8 @@ Plugin 'junegunn/limelight.vim' " <- turns off highlighting outside of current s
 let g:limelight_conceal_ctermfg = 'gray'
 "
 " === extras ===
+Plugin 'mhinz/vim-startify' " <- startup page for recent/bookmared files
+Plugin 'psliwka/vim-smoothie' " <- smooth scrolling
 Plugin 'flazz/vim-colorschemes' " <- Themes
 Plugin 'leafgarland/typescript-vim' " <- typescript syntax
 Plugin 'ervandew/supertab' " <- autocompletion
