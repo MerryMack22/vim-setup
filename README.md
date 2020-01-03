@@ -24,6 +24,9 @@ in their respective files.
   
 - tree view:
   to get a folder-style view of the project like you'd expect in Atom, VSCode, et c. use CTRL+t in Normal mode
+  - Note: This tree's root will be in the directory you opened vim in. For performance reasons try to open it
+    in your project's folder rather than the root of your home directory when using this to avoid performance
+    issues
   - after adding or removing files you can refresh this view with CTRL+r
 
 - bottom bar
