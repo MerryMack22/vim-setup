@@ -107,4 +107,9 @@ These are my notes/directions on how to use git in my VIM setup.
     :Git stash pop
   Switching branches
     :Git checkout [branch name]
+    
+  You can also see the project tree, simmilarly to gitk or github by using:
+    :GV
+  This command can also be run with line(s) selected in visual mode which will
+  only look for the history on those lines.
 
