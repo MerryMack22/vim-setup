@@ -17,6 +17,8 @@ in their respective files.
 
 - fuzzy finder:
   use CTRL+p in Normal mode to activate the fuzzy finder at the bottom of the screen to search for files
+  - To refresh (after adding or removing files) while the CTRL+p window is open press F5, this will trigger a
+    rescan of the files available
   
 - buffer tags:
   use '\' followed by 'b' in Normal mode to pull out the right side panel containing vairables, methods, 
