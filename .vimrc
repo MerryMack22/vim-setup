@@ -199,7 +199,6 @@ Plugin 'junegunn/limelight.vim' " <- turns off highlighting outside of current s
 let g:limelight_conceal_ctermfg = 'gray'
 "
 " === extras ===
-Plugin 'mhinz/vim-startify' " <- startup page for recent/bookmared files
 Plugin 'psliwka/vim-smoothie' " <- smooth scrolling
 Plugin 'flazz/vim-colorschemes' " <- Themes
 Plugin 'leafgarland/typescript-vim' " <- typescript syntax

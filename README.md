@@ -9,7 +9,7 @@ To setup your vim using the setupCustomVim.sh script, all you need to do is run
 ```
 wget https://raw.githubusercontent.com/jrobinson52/vim-setup/master/setupCustomVim.sh
 ```
-then make it executable with `chmod +x setupCustomVim.sh`. Running this script should check for all dependencies but in the event it doesn't work, ensure git, wget, vim, and gvim (sometimes named vim-gtk3) are installed.
+then make it executable with `chmod +x setupCustomVim.sh`. Running this script should check for all dependencies but in the event it doesn't work, ensure git, wget, vim, ctags (sometimes named exuberant-ctags), and gvim (sometimes named vim-gtk3) are installed.
 
 # For Mac users:
 
@@ -25,11 +25,11 @@ in their respective files.
   use CTRL+p in Normal mode to activate the fuzzy finder at the bottom of the screen to search for files
   - To refresh (after adding or removing files) while the CTRL+p window is open press F5, this will trigger a
     rescan of the files available
-  
+
 - buffer tags:
   use '\' followed by 'b' in Normal mode to pull out the right side panel containing vairables, methods, 
   classes, and  namespaces (this depends on having ctags installed)
-  
+
 - tree view:
   to get a folder-style view of the project like you'd expect in Atom, VSCode, et c. use CTRL+t in Normal mode
   - Note: This tree's root will be in the directory you opened vim in. For performance reasons try to open it
@@ -42,12 +42,12 @@ in their respective files.
   the error message will appear here. You can also see what git branch you are on (if you get strange
   symbols then ensure you have a patched powerline font installed). You can also see what mode you are in
   (Normal, Visual, Insert, et c.) as well as the file type and language.
-  
+
 - basic usage:
   This setup doesn't break any native functionality of vim (minus remaping ctrl+r). You can still use the
   shell from wherever you've started vim by typing ':sh' in Normal mode. You can split your open tab with
   another file by typing ":split path/to/file" or ":vsplit path/to/file" in Normal mode
-  
+
 # A note on syntax linting
 Linting only occurs when you return to Normal mode after being in Insert mode. To verify your code just
 drop from insert mode to Normal mode and then your code will be linted. Errors from lints will remain marked on the left side of the file until the next linting.
