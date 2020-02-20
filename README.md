@@ -51,3 +51,56 @@ in their respective files.
 # A note on syntax linting
 Linting only occurs when you return to Normal mode after being in Insert mode. To verify your code just
 drop from insert mode to Normal mode and then your code will be linted. Errors from lints will remain marked on the left side of the file until the next linting.
+
+# Keyboard shortcuts
+## Standard
+- git blame (normal mode)
+  `ctrl+b`
+- copy (normal/visual modes)
+  `y`
+- paste (normal/visual modes)
+  `p`
+- cut (normal/visual modes)
+  `d`
+- undo (normal mode)
+  `u`
+- select line(s) (normal mode)
+  `Shift + v` (then arrow up/down to select more)
+- toggle tag window (normal mode)
+  `\` followed by `b`
+- toggle tree view (normal mode)
+  `Ctrl + t`
+- refresh tree view (normal mode)
+  `Ctrl + r`
+- Toggle fuzzy finder (normal mode)
+  `Ctrl + p`
+- Refresh fuzzy finder (finder must be open)
+  `F5`
+- toggle bookmark on line
+  `m` followed by `m`
+- view all bookmarks
+  `m` followed by `a`
+## vdebug
+- listen for connection
+  `F5`
+- add breakpoint
+  `F10`
+- run-to-cursor
+  `F9`
+- step over
+  `F2`
+- step in
+  `F3`
+- step out
+  `F4`
+- detatch
+  `F7`
+- stop/close
+  `F6`
+  
+# Common commands
+- `:sh` pause vim and drop to shell in vim's working directory (use `exit` to return to vim)
+- `:!php artisan ...` run any artisan command from inside vim
+- `:Git ...` run any git command (tab completion works here)
+- `:help Vdebug` opens help window for Vdebug plugin
+- `/searchString` this is case sensitive and will accept regex
