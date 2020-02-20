@@ -66,6 +66,8 @@ drop from insert mode to Normal mode and then your code will be linted. Errors f
   `u`
 - select line(s) (normal mode)
   `Shift + v` (then arrow up/down to select more)
+- comment line(s) (normal/visual mode)
+  `g` followed by `c` (x2 if nothing is selected will comment line at cursor)
 - toggle tag window (normal mode)
   `\` followed by `b`
 - toggle tree view (normal mode)
