@@ -60,7 +60,7 @@ nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 "
 " === Xuyuanp/nerdtree-git-plugin settings ===
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ "Modified"  : "✹",
       \ "Staged"    : "✚",
       \ "Untracked" : "✭",
