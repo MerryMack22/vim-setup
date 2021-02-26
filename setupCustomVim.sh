@@ -27,8 +27,8 @@ function installYum {
 
 function installApt {
   echo -e "${YELLOW}Installing dependencies (apt)${NC}"
-  sudo apt install -y git wget vim-gtk3
-  buildCtags
+  sudo apt install -y git wget vim-gtk3 ctags
+  #buildCtags
 }
 
 function installDependencies {
