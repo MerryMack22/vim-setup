@@ -194,6 +194,10 @@ let g:ctrlp_prompt_mappings = {
     \}
 " === end  ===
 "
+" === rust-lang/rust.vim ===
+Plugin 'rust-lang/rust.vim'
+" === end rust ===
+"
 " === junegunn/limelight.vim ===
 Plugin 'junegunn/limelight.vim' " <- turns off highlighting outside of current scope
 let g:limelight_conceal_ctermfg = 'gray'
