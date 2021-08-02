@@ -141,7 +141,7 @@ let g:gitgutter_max_signs = 1000
 "
 " === tpope/vim-fugitive settings ===
 Plugin 'tpope/vim-fugitive'
-map <C-b> :Gblame<CR>
+map <C-b> :Git blame<CR>
 " === end tpope/vim-fugitive ===
 "
 " === junegunn/gv.vim settings ===
