@@ -80,6 +80,6 @@ if [ -f $HOME/.vimrc ]; then
   mv $HOME/.vimrc $HOME/.vimrc.old
 fi
 
-wget https://raw.githubusercontent.com/jrobinson52/vim-setup/master/.vimrc
+wget https://raw.githubusercontent.com/MerryMack22/vim-setup/master/.vimrc
 
 vim +PluginClean +PluginInstall +qa
