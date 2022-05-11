@@ -212,76 +212,9 @@ Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-commentary' " <- commenting extras (block comments, mass comments, et c.)
 Plugin 'vim-vdebug/vdebug' " <- xdebug support REQUIRES COMPILATION WITH PYTHON3 SUPPORT
 Plugin 'chrisbra/csv.vim' " <- csv extras
-" === end extras ===
-"
-" ======== Laravel Specific Configs =============
 Plugin 'jwalton512/vim-blade'
 Plugin 'posva/vim-vue' " <- to integrate with ALE:
-" npm i -g eslint eslint-plugin-vue
-"
-"
-" Abbreviations
-abbrev pft PHPUnit_Framework_TestCase
-
-abbrev genm !php artisan generate:model
-abbrev genc !php artisan generate:controller
-abbrev genmig !php artisan generate:migration
-
-" Laravel framework commons
-nmap <leader>lr :e app/routes.php<cr>
-nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
-nmap <leader>lcd :e app/config/database.php<cr>
-nmap <leader>lc :e composer.json<cr>
-
-" Concept - load underlying class for Laravel
-function! FacadeLookup()
-  let facade = input('Facade Name: ')
-  let classes = {
-        \       'Form': 'Html/FormBuilder.php',
-        \       'Html': 'Html/HtmlBuilder.php',
-        \       'File': 'Filesystem/Filesystem.php',
-        \       'Eloquent': 'Database/Eloquent/Model.php'
-        \   }
-
-  execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
-endfunction
-nmap <leader>lf :call FacadeLookup()<cr>
-
-" Prepare a new PHP class
-function! Class()
-  let name = input('Class name? ')
-  let namespace = input('Any Namespace? ')
-
-  if strlen(namespace)
-    exec "normal i<?php namespace " . namespace . ";\<C-m>\<C-m>"
-  else
-    exec "normal i<?php \<C-m>"
-  endif
-
-  " Open class
-  exec "normal iclass " . name . " {\<C-m>}\<C-[>O\<C-[>"
-
-  exec "normal i\<C-M>public function __construct()\<C-M>{\<C-M>\<C-M>}\<C-[>"
-endfunction
-nmap <leader>1  :call Class()<cr>
-
-" Add a new dependency to a PHP class
-function! AddDependency()
-  let dependency = input('Var Name: ')
-  let namespace = input('Class Path: ')
-
-  let segments = split(namespace, '\')
-  let typehint = segments[-1]
-
-  exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
-
-  " Remove opening comma if there is only one dependency
-  exec 'normal :%s/(, /(/g'
-endfunction
-nmap <leader>2 :call AddDependency()<cr>
-
-" ========= end laravel specific configs =========
-"
+" === end extras ===
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
