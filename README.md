@@ -7,7 +7,7 @@ default or use the setupCustomVim.sh script to automate it.
 
 To setup your vim using the setupCustomVim.sh script, all you need to do is run 
 ```
-wget https://raw.githubusercontent.com/jrobinson52/vim-setup/master/setupCustomVim.sh
+wget https://raw.githubusercontent.com/MerryMack22/vim-setup/master/setupCustomVim.sh
 ```
 then make it executable with `chmod +x setupCustomVim.sh`. Running this script should check for all dependencies but in the event it doesn't work, ensure git, wget, vim, ctags (sometimes named exuberant-ctags), and gvim (sometimes named vim-gtk3) are installed.
 
