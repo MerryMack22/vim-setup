@@ -27,7 +27,7 @@ in their respective files.
     rescan of the files available
 
 - buffer tags:
-  use '\' followed by 'b' in Normal mode to pull out the right side panel containing vairables, methods, 
+  use '\\' followed by 'b' in Normal mode to pull out the right side panel containing vairables, methods, 
   classes, and  namespaces (this depends on having ctags installed)
 
 - tree view:
