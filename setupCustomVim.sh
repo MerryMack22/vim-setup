@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RED='\033[0;31m]'
+RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # no color
 
@@ -49,23 +49,23 @@ function installDependencies {
 
 
 #verify dependencies are installed
-INSTALL_GIT=false
-INSTALL_WGET=false
-INSTALL_CTAGS=false
+INSTALL_GIT=true
+INSTALL_WGET=true
+INSTALL_CTAGS=true
 
-if [ -z "$(command -v git)" ]; then
-  INSTALL_GIT=true
+if [ "$(command -v git)" > /dev/null ]; then
+  INSTALL_GIT=false
 fi
 
-if [ -z "$(command -v wget)" ]; then
-  INSTALL_WGET=true
+if [ "$(command -v wget)" > /dev/null ]; then
+  INSTALL_WGET=false
 fi
 
-if [ -z "$(command -v ctags)" ]; then
-  INSTALL_CTAGS=true
+if [ "$(command -v ctags)" > /dev/null ]; then
+  INSTALL_CTAGS=false
 fi
 
-if [ $INSTALL_GIT ] || [ $WGET_INSTALLED ] || [ $CTAGS_INSTALLED ]; then
+if $INSTALL_GIT || $INSTALL_WGET || $INSTALL_CTAGS; then
   installDependencies
 fi
 
